@@ -19,8 +19,8 @@ public static void main(String[] args)  {
 // TODO Auto-generated method stub
  
 System.out.println("Please enter link which you're looking for:");
-Scanner in = new Scanner(System.in);
-String url = in.nextLine();
+Scanner input = new Scanner(System.in);
+String url = input.nextLine();
 //this variable contains link which we are looking for.
 GlobalURL global = new GlobalURL();
  
@@ -104,22 +104,22 @@ links.add(line);
 for(int i=0;i<links.size();i++){
  
 Runnable crawl = new Crawler(links.get(i));
-//Thread t = new Thread(crawl);
-//t.start();
+Thread t = new Thread(crawl);
+t.start();
  
-/*try{
+try{
  
 t.join();
  
 }
 catch(Exception e){
  
-}*/
+}
  
  
 }
  
-/*Runnable crawl1 = new Crawler("http://www.uwo.ca/");
+Runnable crawl1 = new Crawler("http://www.uwo.ca/");
 Thread t1 = new Thread(crawl1);
  
 Runnable crawl2 = new Crawler("http://www.utoronto.ca");
@@ -138,7 +138,7 @@ t1.start();
  
      
      
-}*/
+}
  
  
  
