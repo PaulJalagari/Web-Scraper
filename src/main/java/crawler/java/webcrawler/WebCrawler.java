@@ -5,9 +5,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import crawler.java.Web.Crawler;
 import crawler.java.pagemanager.PageManager;
 import crawler.java.url.GlobalURL;
+import crawler.java.web.Crawler;
  
 public class WebCrawler {
  

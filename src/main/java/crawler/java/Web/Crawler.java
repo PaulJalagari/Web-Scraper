@@ -1,4 +1,4 @@
-package crawler.java.Web;
+package crawler.java.web;
 
 import java.io.IOException;
 import java.net.URL;
