@@ -96,42 +96,42 @@ public class WebCrawler {
 			}
 
 			// create thread for each root node
-			/*
-			 * for (int i = 0; i < links.size(); i++) {
-			 * 
-			 * Runnable crawl = new Crawler(links.get(i)); Thread t = new
-			 * Thread(crawl); t.start();
-			 * 
-			 * try {
-			 * 
-			 * t.join();
-			 * 
-			 * } catch (Exception e) {
-			 * 
-			 * }
-			 * 
-			 * }
-			 */
 
-			/*
-			 * Runnable crawl1 = new Crawler("http://www.uwo.ca/"); Thread t1 =
-			 * new Thread(crawl1);
-			 * 
-			 * Runnable crawl2 = new Crawler("http://www.utoronto.ca"); Thread
-			 * t2 = new Thread(crawl2);
-			 * 
-			 * t1.start(); t2.start();
-			 * 
-			 * try {
-			 * 
-			 * t1.join(); t2.join();
-			 * 
-			 * } catch (Exception e) {
-			 * 
-			 * System.out.println(e);
-			 * 
-			 * }
-			 */
+			for (int i = 0; i < links.size(); i++) {
+
+				Runnable crawl = new Crawler(links.get(i));
+				Thread t = new Thread(crawl);
+				t.start();
+
+				try {
+
+					t.join();
+
+				} catch (Exception e) {
+
+				}
+
+			}
+
+			Runnable crawl1 = new Crawler("http://www.uwo.ca/");
+			Thread t1 = new Thread(crawl1);
+
+			Runnable crawl2 = new Crawler("http://www.utoronto.ca");
+			Thread t2 = new Thread(crawl2);
+
+			t1.start();
+			t2.start();
+
+			try {
+
+				t1.join();
+				t2.join();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+
+			}
 
 		} catch (IOException ex) {
 
