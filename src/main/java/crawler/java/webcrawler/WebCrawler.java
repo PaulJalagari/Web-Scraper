@@ -123,7 +123,7 @@ public class WebCrawler {
 
 			}
 
-			Runnable crawl1 = new Crawler("http://www.uwo.ca/");
+			/*Runnable crawl1 = new Crawler("http://www.uwo.ca/");
 			Thread t1 = new Thread(crawl1);
 
 			Runnable crawl2 = new Crawler("http://www.utoronto.ca");
@@ -141,7 +141,7 @@ public class WebCrawler {
 
 				System.out.println(e);
 
-			}
+			}*/
 
 		} catch (IOException ex) {
 
