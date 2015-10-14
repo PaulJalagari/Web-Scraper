@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import crawler.java.crawler.Crawler;
 import crawler.java.pagemanager.PageManager;
 import crawler.java.url.GlobalURL;
@@ -12,15 +14,22 @@ import crawler.java.url.GlobalURL;
 public class WebCrawler {
 
 	private String url;
-
+	private static org.apache.log4j.Logger log = Logger.getLogger(WebCrawler.class);
 	public static void main(String[] args) {
 
 		// TODO Auto-generated method stub
 
 		System.out.println("Please enter link which you're looking for:");
 		Scanner input = new Scanner(System.in);
-		String url = input.nextLine();
+		String link = input.nextLine();
 		// this variable contains link which we are looking for.
+		followLink(link);
+
+	}
+
+	private static void followLink(String url) {
+
+		// TODO Auto-generated method stub
 		GlobalURL global = new GlobalURL();
 
 		// long heapSize = Runtime.getRuntime().maxMemory();
@@ -107,7 +116,8 @@ public class WebCrawler {
 
 					t.join();
 
-				} catch (Exception e) {
+				} catch (Exception ea) {
+					System.out.println(ea);
 
 				}
 

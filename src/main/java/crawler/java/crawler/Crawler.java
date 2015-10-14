@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
+import crawler.java.download.HttpDownloader;
 import crawler.java.pagemanager.PageManager;
 import crawler.java.robot.Robot;
 import crawler.java.thread.CrawlerThread;
@@ -75,6 +76,7 @@ public class Crawler implements Runnable {
 
 								System.out.println("Thread " + Thread.currentThread().getId() + ": " + currentLink
 										+ " ---> " + global.getLink().get(h).toString());
+								HttpDownloader.download(currentLink);
 								synchronized (printer) {
 
 									printer.append(currentLink + " ---> " + global.getLink().get(h).toString());
