@@ -12,7 +12,7 @@ import crawler.java.url.GlobalURL;
 public class WebCrawler {
 
 	private String url;
-	
+
 	public static void main(String[] args) {
 
 		// TODO Auto-generated method stub
@@ -121,7 +121,6 @@ public class WebCrawler {
 
 			}
 
-			
 		} catch (IOException ex) {
 
 			System.out.println(ex);
