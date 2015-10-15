@@ -92,7 +92,7 @@ public class Crawler implements Runnable {
 					// new, insert into newLinks
 					if (crawlerThread.isNewLink(allLinks, links.get(i).toString())) {
 
-						if (manager.isVerified(links.get(i)) && robotCheck.robatAllowed(new URL(links.get(i)))) {
+						if (manager.isVerified(links.get(i)) && robotCheck.robotAllowed(new URL(links.get(i)))) {
 
 							crawlerThread.addToList(newLinks, links.get(i));
 							// System.out.print(crawlerThread.inc());

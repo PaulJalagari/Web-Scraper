@@ -9,18 +9,18 @@ public class Robot {
 
 	}
 
-	public boolean robatAllowed(URL url) {
+	public boolean robotAllowed(URL url) {
 
 		String host = url.getHost();
 
 		try {
 
 			URL hostURL = new URL("http" + host + "/robots.txt");
-			BufferedReader br = new BufferedReader(new InputStreamReader(hostURL.openStream()));
+			BufferedReader Reader = new BufferedReader(new InputStreamReader(hostURL.openStream()));
 
 			String line;
 			String disallowLink;
-			while ((line = br.readLine()) != null) {
+			while ((line = Reader.readLine()) != null) {
 
 				if (line.toLowerCase().startsWith("disallow:")) {
 
@@ -35,7 +35,7 @@ public class Robot {
 					disallowLink = hostURL + disallowLink;
 					if (url.toString().startsWith(disallowLink)) {
 
-						br.close();
+						Reader.close();
 						return false;
 
 					}
@@ -44,7 +44,7 @@ public class Robot {
 
 			}
 
-			br.close();
+			Reader.close();
 			return true;
 
 		} catch (IOException ex) {
