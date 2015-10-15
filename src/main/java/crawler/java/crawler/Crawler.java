@@ -25,15 +25,15 @@ public class Crawler implements Runnable {
 	// this variable contains links having been found so far.
 	private static HashSet foundLinks = new HashSet();
 	private CrawlerThread crawlerThread = new CrawlerThread();
-	Thread t;
+	Thread thread;
 	private static FileOutputStream output;
 	private static PrintStream printer;
 
 	public Crawler(String url) {
 
 		seed = url;
-		t = new Thread(this);
-		t.start();
+		thread = new Thread(this);
+		thread.start();
 
 	}
 
@@ -43,7 +43,7 @@ public class Crawler implements Runnable {
 		allLinks.add(oldLinks);
 		// this variable stores root node
 		ArrayList<String> links = new ArrayList<String>();
-		PageManager m = new PageManager();
+		PageManager manager = new PageManager();
 		Robot robotCheck = new Robot();
 		GlobalURL global = new GlobalURL();
 
@@ -58,9 +58,9 @@ public class Crawler implements Runnable {
 
 				String currentLink = crawlerThread.getNextLink(newLinks);
 
-				URL u = new URL(currentLink);
+				URL url = new URL(currentLink);
 				crawlerThread.addToList(oldLinks, currentLink);
-				links = m.retrieveLinks(u);
+				links = manager.retrieveLinks(url);
 
 				// for every links
 				for (int i = 0; i < links.size(); i++) {
@@ -92,7 +92,7 @@ public class Crawler implements Runnable {
 					// new, insert into newLinks
 					if (crawlerThread.isNewLink(allLinks, links.get(i).toString())) {
 
-						if (m.isVerified(links.get(i)) && robotCheck.robatAllowed(new URL(links.get(i)))) {
+						if (manager.isVerified(links.get(i)) && robotCheck.robatAllowed(new URL(links.get(i)))) {
 
 							crawlerThread.addToList(newLinks, links.get(i));
 							// System.out.print(crawlerThread.inc());

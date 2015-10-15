@@ -47,11 +47,11 @@ public class CrawlerThread {
 
 	}
 
-	synchronized public boolean addToList(HashSet s, String link) {
+	synchronized public boolean addToList(HashSet Set, String link) {
 
-		if (!s.contains(link)) {
+		if (!Set.contains(link)) {
 
-			s.add(link);
+			Set.add(link);
 			return true;
 
 		} else
@@ -109,15 +109,15 @@ public class CrawlerThread {
 
 	}
 
-	synchronized public String getNextLink(HashSet s) {
+	synchronized public String getNextLink(HashSet set) {
 
 		String link = "";
-		synchronized (s) {
+		synchronized (set) {
 
-			link = s.iterator().next().toString();
+			link = set.iterator().next().toString();
 
 		}
-		s.remove(link);
+		set.remove(link);
 		return link;
 
 		/*

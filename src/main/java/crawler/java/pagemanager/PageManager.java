@@ -23,15 +23,15 @@ public class PageManager {
 	public ArrayList retrieveLinks(URL pageURL) {
 
 		retrieveContents(pageURL);
-		Pattern p = Pattern.compile("<a\\s+href\\s*=\\s*\"?(.*?)[\"|>]", Pattern.CASE_INSENSITIVE);
-		Matcher m = p.matcher(pageContents);
+		Pattern pattern = Pattern.compile("<a\\s+href\\s*=\\s*\"?(.*?)[\"|>]", Pattern.CASE_INSENSITIVE);
+		Matcher match = pattern.matcher(pageContents);
 		ArrayList links = new ArrayList();
 
 		try {
 
-			while (m.find()) {
+			while (match.find()) {
 
-				String link = m.group(1).trim();
+				String link = match.group(1).trim();
 
 				// Skip empty links.
 				if (link.length() < 1) {
@@ -149,15 +149,15 @@ public class PageManager {
 		String s;
 		try {
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(pageURL.openStream()));
-			while ((s = br.readLine()) != null) {
+			BufferedReader Reader = new BufferedReader(new InputStreamReader(pageURL.openStream()));
+			while ((s = Reader.readLine()) != null) {
 
 				sb.append(s);
 
 			}
 
 			pageContents = sb.toString();
-			br.close();
+			Reader.close();
 
 		} catch (MalformedURLException mue) {
 

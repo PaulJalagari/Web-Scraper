@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.apache.log4j.Logger;
-
 import crawler.java.crawler.Crawler;
 import crawler.java.pagemanager.PageManager;
 import crawler.java.url.GlobalURL;
@@ -14,32 +12,32 @@ import crawler.java.url.GlobalURL;
 public class WebCrawler {
 
 	private String url;
-	private static org.apache.log4j.Logger log = Logger.getLogger(WebCrawler.class);
+	
 	public static void main(String[] args) {
 
 		// TODO Auto-generated method stub
 
 		System.out.println("Please enter link which you're looking for:");
-		Scanner input = new Scanner(System.in);
-		String link = input.nextLine();
+		Scanner Input = new Scanner(System.in);
+		String Link = Input.nextLine();
 		// this variable contains link which we are looking for.
-		followLink(link);
+		followLink(Link);
 
 	}
 
 	private static void followLink(String url) {
 
 		// TODO Auto-generated method stub
-		GlobalURL global = new GlobalURL();
+		GlobalURL Global = new GlobalURL();
 
 		// long heapSize = Runtime.getRuntime().maxMemory();
 		// System.out.println("Heap Size = " + heapSize);
 		try {
 
-			File roots = new File("roots.txt");
-			FileInputStream fis = new FileInputStream(roots);
-			DataInputStream dis = new DataInputStream(fis);
-			BufferedReader br = new BufferedReader(new InputStreamReader(dis));
+			File Roots = new File("roots.txt");
+			FileInputStream File = new FileInputStream(Roots);
+			DataInputStream Data = new DataInputStream(File);
+			BufferedReader Reader = new BufferedReader(new InputStreamReader(Data));
 			String line;
 			ArrayList<String> links = new ArrayList<String>();
 			PageManager pageManager = new PageManager();
@@ -47,40 +45,40 @@ public class WebCrawler {
 			if (pageManager.isVerified(url)) {
 
 				// we add different variations of URL which we want to look for
-				global.addLink(url);
+				Global.addLink(url);
 				if (url.endsWith("/")) {
 
-					global.addLink(url.substring(0, url.length() - 1));
+					Global.addLink(url.substring(0, url.length() - 1));
 
 					if (url.contains("www")) {
 
-						global.addLink("http://" + url.substring(11));
-						global.addLink("http://" + url.substring(11, url.length() - 1));
+						Global.addLink("http://" + url.substring(11));
+						Global.addLink("http://" + url.substring(11, url.length() - 1));
 
 					}
 
 					else {
 
-						global.addLink("http://www." + url.substring(7));
-						global.addLink("http://www." + url.substring(7, url.length() - 1));
+						Global.addLink("http://www." + url.substring(7));
+						Global.addLink("http://www." + url.substring(7, url.length() - 1));
 
 					}
 
 				} else {
 
-					global.addLink(url + "/");
+					Global.addLink(url + "/");
 
 					if (url.contains("www")) {
 
-						global.addLink("http://" + url.substring(11));
-						global.addLink("http://" + url.substring(11) + "/");
+						Global.addLink("http://" + url.substring(11));
+						Global.addLink("http://" + url.substring(11) + "/");
 
 					}
 
 					else {
 
-						global.addLink("http://www." + url.substring(7));
-						global.addLink("http://www." + url.substring(7) + "/");
+						Global.addLink("http://www." + url.substring(7));
+						Global.addLink("http://www." + url.substring(7) + "/");
 
 					}
 
@@ -98,7 +96,7 @@ public class WebCrawler {
 			}
 
 			// add root nodes from file
-			while ((line = br.readLine()) != null) {
+			while ((line = Reader.readLine()) != null) {
 
 				links.add(line);
 
@@ -109,40 +107,21 @@ public class WebCrawler {
 			for (int i = 0; i < links.size(); i++) {
 
 				Runnable crawl = new Crawler(links.get(i));
-				Thread t = new Thread(crawl);
-				t.start();
+				Thread thread = new Thread(crawl);
+				thread.start();
 
 				try {
 
-					t.join();
+					thread.join();
 
-				} catch (Exception ea) {
-					System.out.println(ea);
+				} catch (Exception e) {
+					System.out.println(e);
 
 				}
 
 			}
 
-			/*Runnable crawl1 = new Crawler("http://www.uwo.ca/");
-			Thread t1 = new Thread(crawl1);
-
-			Runnable crawl2 = new Crawler("http://www.utoronto.ca");
-			Thread t2 = new Thread(crawl2);
-
-			t1.start();
-			t2.start();
-
-			try {
-
-				t1.join();
-				t2.join();
-
-			} catch (Exception e) {
-
-				System.out.println(e);
-
-			}*/
-
+			
 		} catch (IOException ex) {
 
 			System.out.println(ex);

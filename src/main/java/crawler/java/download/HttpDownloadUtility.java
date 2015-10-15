@@ -22,14 +22,14 @@ public class HttpDownloadUtility {
 	/**
 	 * Downloads a file from a URL
 	 * 
-	 * @param fileURL
+	 * @param FileURL
 	 *            HTTP URL of the file to be downloaded
-	 * @param saveDir
+	 * @param SaveDir
 	 *            path of the directory to save the file
 	 * @throws IOException
 	 */
-	public static void downloadFile(String fileURL, String saveDir) throws IOException {
-		URL url = new URL(fileURL);
+	public static void downloadFile(String FileURL, String SaveDir) throws IOException {
+		URL url = new URL(FileURL);
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 		int responseCode = httpConn.getResponseCode();
 
@@ -48,7 +48,7 @@ public class HttpDownloadUtility {
 				}
 			} else {
 				// extracts file name from URL
-				fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
+				fileName = FileURL.substring(FileURL.lastIndexOf("/") + 1, FileURL.length());
 			}
 
 			log.info("Content-Type = " + contentType);
@@ -58,7 +58,7 @@ public class HttpDownloadUtility {
 
 			// opens input stream from the HTTP connection
 			InputStream inputStream = httpConn.getInputStream();
-			String saveFilePath = saveDir + File.separator + fileName;
+			String saveFilePath = SaveDir + File.separator + fileName;
 
 			// opens an output stream to save into file
 			FileOutputStream outputStream = new FileOutputStream(saveFilePath);
